@@ -1,0 +1,28 @@
+{% extends "base_generic.html" %}
+{% block title %}
+    <title>Resident List</title>
+{% endblock %}
+{% block content %}
+  <h1 style="text-align:center;">Resident List</h1>
+  
+  {% if owner_list %}
+  <table class="owner-enter-table">
+    <tr>
+        <th>Resident Name</th>
+        <th>Unit</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {% for owner in owner_list %}
+    <tr>
+        <td>{{ owner }}</td>
+        <td>{{ owner.unit }}</td>
+        <td><a href="{{ owner.get_absolute_url }}"><input type="button" class="addBtn" value="View"></a></td>
+        <td><a href="{% url 'owner-delete' owner.id %}"><input type="button" class="deleteBtn" value="DELETE"></a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+    <p>There are no resident in the system.</p>
+  {% endif %}
+{% endblock %}

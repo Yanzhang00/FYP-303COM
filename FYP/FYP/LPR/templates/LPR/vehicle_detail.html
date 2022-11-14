@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+{% block title %}
+    <title>Vehicle Details</title>
+{% endblock %}
+{% block content %}
+<div class="center-div">
+  <h1>Vehicle Details</h1>
+  <hr>
+  <p><strong>Brand:</strong> {{ vehicle.brand }}</p>
+  <p><strong>Model:</strong> {{ vehicle.model }}</p>
+  <p><strong>Colour:</strong> {{ vehicle.colour }}</p>
+  <p><strong>License Plate Number:</strong> {{ vehicle.plateNum }}</p>
+  <p><strong>Owner:</strong> {{ vehicle.owner.name }}</p>
+
+  <a href="{% url 'vehicle-update' vehicle.id %}"><input type="button" class="editBtn" value="Edit"></a>
+  <a href="{% url 'vehicle-delete' vehicle.id %}"><input type="button" class="deleteBtn" value="Delete"></a>
+</div>
+{% endblock %}

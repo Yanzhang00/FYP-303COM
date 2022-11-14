@@ -1,0 +1,30 @@
+{% extends "base_generic.html" %}
+{% block title %}
+    <title>Vehicle List</title>
+{% endblock %}
+{% block content %}
+  <h1 style="text-align:center;">Vehicle List</h1>
+  {% if vehicle_list %}
+  <table class="owner-enter-table">
+    <tr>
+        <th>Name</th>
+        <th>Plate Number</th>
+        <th>Owner name</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {% for vehicle in vehicle_list %}
+    <tr>
+        <td>{{ vehicle }}</td>
+        <td>{{ vehicle.plateNum }}</td>
+        <td>{{ vehicle.owner }}</td>
+        <td><a href="{{ vehicle.get_absolute_url }}" style="text-decoration:none;"><input type="button" class="addBtn" value="View"></a></td>
+        <td><a href="{% url 'vehicle-delete' vehicle.id %}" style="text-decoration:none;"><input type="button" class="deleteBtn" value="DELETE"></a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+    <p>There are no vehicle in the system.</p>
+  {% endif %}
+{% endblock %}
+

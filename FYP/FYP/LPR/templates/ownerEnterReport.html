@@ -1,0 +1,36 @@
+{% extends "base_generic.html" %}
+{% block title %}<title>Resident Access Report</title>{% endblock %}
+
+{% block content %}
+<head>
+{% load static %}
+</head>
+
+<body>
+    <h1 style="text-align:center;">Resident Enter Date Time</h1>
+    <div style="float:right; margin-right:10px;">
+        <form action="{% url 'ownerEnter' %}" method="get">
+            <input type="text" name="searchText" maxlength="10" placeholder="eg.PMK1111">
+            <input type="submit" value="Search">
+        </form>
+        <small style="color:red">{{ error }}</small>
+    </div>
+    
+    <table class="owner-enter-table">
+        <tr>
+            <th>Resident Name</th>
+            <th>Vehicle Plate Number</th>
+            <th>Vehicle Model</th>
+            <th>Enter Time</th>
+        </tr>
+        {% for vehicle in enterDateTime %}
+        <tr>
+            <td>{{ vehicle.vehicle.owner }}</td>
+            <td>{{ vehicle.vehicle.plateNum }}</td>
+            <td>{{ vehicle.vehicle }}</td>
+            <td>{{ vehicle.dateTime }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+{% endblock %}

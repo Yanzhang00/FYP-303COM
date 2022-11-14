@@ -1,0 +1,31 @@
+{% extends "base_generic.html" %}
+{% block title %}
+    <title>Resident Details</title>
+{% endblock %}
+{% block content %}
+<div class="center-div">
+  <h1>Resident Details</h1>
+  <hr>
+  <p><strong>Name:</strong> {{ owner.name }}</p>
+  <p><strong>Unit:</strong> {{ owner.unit }}</p>
+
+  <a href="{% url 'owner-update' owner.id %}"><input type="button" class="editBtn" value="Edit"></a>
+  <a href="{% url 'owner-delete' owner.id %}"><input type="button" class="deleteBtn" value="Delete"></a>
+  <a href="{% url 'vehicle-create' owner.id %}"><input type="button" class="addBtn" value="Add Vehicle"></a>
+
+  <div style="margin-left:20px;margin-top:20px">
+    <h2>Vehicles</h4>
+    {% if owner.vehicle_set.all %}
+      {% for vehicles in owner.vehicle_set.all %}
+        <hr>
+        <p>
+          <a href="{% url 'vehicle-detail' vehicles.id %}">{{ vehicles.brand }} {{ vehicles.model }}</a>
+        </p>
+      {% endfor %}
+    {% else %}
+      <hr>
+      <strong><p>There is no vehicle associate to this resident.</p></strong>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

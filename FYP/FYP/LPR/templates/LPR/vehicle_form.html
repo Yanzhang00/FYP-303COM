@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+  {% if 'create' in request.path %}
+    <title>Create A Vehicle</title>
+  {% elif 'update' in request.path %}
+    <title>Edit A Vehicle</title>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="center-div">
+  {% if 'create' in request.path %}
+  <h1 style="text-align:center;">Create A Vehicle</h1>
+  {% elif 'update' in request.path %}
+  <h1 style="text-align:center;">Edit A Vehicle</h1>
+  {% endif %}
+  <form action="" method="post">
+    {% csrf_token %}
+    <table style="margin: 0 auto; margin-top: 40px;">
+    {{ form.as_table }}
+    </table>
+    <input type="submit" style="margin-top:20px;" class="editBtn" value="Submit">
+  </form>
+</div>
+{% endblock %}

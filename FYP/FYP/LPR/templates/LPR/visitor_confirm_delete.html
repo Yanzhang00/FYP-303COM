@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+{% block title %}
+    <title>Visitor Delete</title>
+{% endblock %}
+{% block content %}
+<div class="center-div">
+  <h1 style="text-align:center;">Delete Vehicles</h1>
+
+  <p>Are you sure you want to delete the vehicles: {{ visitor.visitorPlateNum}}?</p>
+
+  <form action="" method="POST">
+    {% csrf_token %}
+    <a href="{% url 'visitor-detail' visitor.id %}"><input type="button" class="addBtn" value="No, please take me back"></a>
+    <input type="submit" class="deleteBtn" value="Yes, delete">
+  </form>
+</div>
+{% endblock %}

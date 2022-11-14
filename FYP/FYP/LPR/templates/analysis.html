@@ -1,0 +1,64 @@
+{% extends "base_generic.html" %}
+{% load static  %}
+
+{% block content %}
+<style>
+  ul {
+      list-style-type: None;
+  }
+
+  ul li.a::before {
+      content: "\25A0";
+      color: #1f78b4;
+      font-weight: bold;
+      display: inline-block; 
+      width: 1em;
+      margin-left: -1em;
+  }
+
+  ul li.b::before {
+      content: "\25A0";
+      color: #fe7f0e;
+      font-weight: bold;
+      display: inline-block; 
+      width: 1em;
+      margin-left: -1em;
+  }
+  ul li.c::before {
+      content: "\25A0";
+      color: #2ba02d;
+      font-weight: bold;
+      display: inline-block; 
+      width: 1em;
+      margin-left: -1em;
+  }
+  ul li.d::before {
+      content: "\25A0";
+      color: #d52728;
+      font-weight: bold;
+      display: inline-block; 
+      width: 1em;
+      margin-left: -1em;
+  }
+</style>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Page</title>
+  </head>
+  <body>
+    <h3> PieChart</h3>
+    <hr/>
+    <img  src="{% static '/images/sale_purchase_peichart.png' %}" />
+    <ul>
+      <p>Total Number of data: {{ total }}</p>
+      <li class="a">Less than 10 Seconds : {{ quarter1 }}</li>
+      <li class="b">10-30 Seconds : {{ quarter2 }}</li>
+      <li class="c">31-60 Seconds : {{ quarter3 }}</li>
+      <li class="d">More than 60 Seconds: {{ quarter4 }}</li>
+
+  </ul>
+  </body>
+      
+  </div>
+{% endblock %}

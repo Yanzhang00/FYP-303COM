@@ -1,0 +1,59 @@
+{% extends "base_generic.html" %}
+{% block title %}
+    <title>Vehicle Enter</title>
+{% endblock %}
+{% block content %}
+<head>
+{% load static %}
+</head>
+
+<body>
+    <h1 style="text-align:center;">Vehicle Enter</h1>
+    <div class="contentarea" style="padding:20px;">
+        <div class="Input">
+            <form method="POST" name="inputForm" enctype='multipart/form-data'>
+                {% csrf_token %}
+                <div id="camera" class="camera">
+                    <video id="video" autoplay>Video stream not available.</video>
+                    <button id="startbutton" type="button" name="takePhoto">Take photo</button>
+                    <input id="webimg" name="src" type="text" style="display: none;">
+                    <canvas id="canvas">
+                    </canvas>
+                </div>
+                <br>
+                <div>
+                    <img id="photo" name="photo" alt="your image">
+                    <img id="newPhoto" name="newPhoto" alt="Recognized Image" src="data:image/jpeg;base64,{{img}}">
+                </div>
+                <br>
+                {% if errorMsg|length > 0 %}
+                <div>
+                    <p>{{ errorMsg }}</p>
+                </div>
+                {% endif %}
+
+                {% if ownerName %}
+                <div>
+                    <p>Resident Name: {{ ownerName }} <br></p>
+                    <p>Resident Unit: {{ ownerUnit }} <br></p>
+                    <p>Vehicle Name: {{ vehicleName }} <br></p>
+                    <p>Vehicle Plate Number: {{ plateNum }} <br></p>
+                    <p>Vehicle Colour: {{ vehicleColour }}</p>
+                </div>
+                {% elif visitorName %}
+                <div>
+                    <p>Visitor Name: {{ visitorName }} <br></p>
+                    <p>Visited Unit: {{ visitUnit }} <br></p>
+                    <p>Vehicle Plate Number: {{ visitorPlateNum }} <br></p>
+                </div>
+                {% else %}
+                <div>
+                    <p>{{ notFound }}</p>
+                </div>
+                {% endif %}
+                <button type="submit" class="button" id="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base_generic.html" %}
+{% block title %}
+    <title>Visitor List</title>
+{% endblock %}
+{% block content %}
+  <h1 style="text-align:center;">Vehicles List</h1>
+  {% if visitor_list %}
+  <table class="owner-enter-table">
+    <tr>
+        <th>Name</th>
+        <th>Plate Number</th>
+        <th>Email</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {% for visitor in visitor_list %}
+    <tr>
+        <td>{{ visitor.name }}</td>
+        <td>{{ visitor.visitorPlateNum }}</td>
+        <td>{{ visitor.email}}</td>
+        <td><a href="{{ visitor.get_absolute_url }}" style="text-decoration:none;"><input type="button" class="addBtn" value="View"></a></td>
+        <td><a href="{% url 'visitor-delete' visitor.id %}" style="text-decoration:none;"><input type="button" class="deleteBtn" value="DELETE"></a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+    <p>There are no visitor in the system.</p>
+  {% endif %}
+{% endblock %}
+

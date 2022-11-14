@@ -1,0 +1,51 @@
+{% extends "base_generic.html" %}
+{% block title %}
+    <title>Vehicle Enter Upload</title>
+{% endblock %}
+{% block content %}
+<head>
+{% load static %}
+</head>
+
+<body>
+    <h1 style="text-align:center;">Vehicle Enter Upload</h1>
+    <div class="contentarea" style="padding:20px;">
+        <div class="Input">
+            <form method="POST" name="inputForm" enctype='multipart/form-data'>
+                {% csrf_token %}
+                <input type="file" name="upload" accept="image/*">
+                <div>
+                    <img id="newPhoto" name="newPhoto" alt="New image" src="data:image/jpeg;base64,{{img}}" width="600" height="300">
+                </div>
+                <br>
+                {% if errorMsg|length > 0 %}
+                <div>
+                    <p>{{ errorMsg }}</p>
+                </div>
+                {% endif %}
+
+                {% if ownerName %}
+                <div>
+                    <p>Resident Name: {{ ownerName }} <br></p>
+                    <p>Resident Unit: {{ ownerUnit }} <br></p>
+                    <p>Vehicle Name: {{ vehicleName }} <br></p>
+                    <p>Vehicle Plate Number: {{ ownerUnit }} <br></p>
+                    <p>Vehicle Colour: {{ vehicleColour }}</p>
+                </div>
+                {% elif visitorName %}
+                <div>
+                    <p>Visitor Name: {{ visitorName }} <br></p>
+       
+                    <p>Vehicle Plate Number: {{ visitorPlateNum }} <br></p>
+                </div>
+                {% else %}
+                <div>
+                    <p>{{ notFound }}</p>
+                </div>
+                {% endif %}
+                <button type="submit" class="button" id="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+{% endblock %}
